@@ -1,5 +1,6 @@
 const ApprovalRecord = require('../models/ApprovalRecord')
 const Song = require('../models/Song')
+const Submission = require('../models/Submission')
 const resetWeek = require('../utils/resetWeek')
 const { currentWeekLabel } = require('./songController')
 
@@ -9,7 +10,7 @@ async function getFinalList(req, res) {
     const weekLabel = req.query.weekLabel || currentWeekLabel()
     const records = await ApprovalRecord.find({ weekLabel }).lean()
 
-    // Group by song
+    // Group approvals by song
     const bySong = {}
     records.forEach((r) => {
       const key = String(r.songId)
@@ -17,22 +18,40 @@ async function getFinalList(req, res) {
       bySong[key].members.push({ name: r.memberName, voicePart: r.voicePart, approvedBy: r.approvedBy, approvedAt: r.approvedAt })
     })
 
-    // Count active songs for the week
+    // Active songs this week
     const activeSongs = await Song.find({ isActive: true }).lean()
-    const activeSongIds = new Set(activeSongs.map((s) => String(s._id)))
+    const activeSongIds = activeSongs.map((s) => String(s._id))
+    const totalActive = activeSongIds.length
 
-    // fullyCleared = members approved on EVERY active song
-    const memberSongCount = {}
+    // Qualified = submitted AND approved on EVERY active song
+    // Step 1: find members who have an approved submission for every active song
+    const memberMap = {} // memberId -> { name, voicePart, approvedSongs: Set }
     records.forEach((r) => {
-      if (!activeSongIds.has(String(r.songId))) return
+      if (!activeSongIds.includes(String(r.songId))) return
       const key = String(r.memberId)
-      if (!memberSongCount[key]) memberSongCount[key] = { name: r.memberName, voicePart: r.voicePart, count: 0 }
-      memberSongCount[key].count++
+      if (!memberMap[key]) memberMap[key] = { name: r.memberName, voicePart: r.voicePart, approvedSongs: new Set() }
+      memberMap[key].approvedSongs.add(String(r.songId))
     })
-    const totalActive = activeSongIds.size
-    const fullyCleared = Object.values(memberSongCount).filter((m) => m.count >= totalActive)
 
-    res.json({ weekLabel, bySong: Object.values(bySong), fullyCleared })
+    // Step 2: also verify they have an actual submission record for every active song
+    const qualifiedMembers = []
+    for (const [memberId, info] of Object.entries(memberMap)) {
+      if (info.approvedSongs.size < totalActive) continue // not approved on all songs
+      // Confirm they submitted all songs
+      const submittedCount = await Submission.countDocuments({
+        member: memberId,
+        song: { $in: activeSongIds },
+        status: 'approved',
+      })
+      if (submittedCount >= totalActive) {
+        qualifiedMembers.push({ name: info.name, voicePart: info.voicePart })
+      }
+    }
+
+    // Sort qualified alphabetically
+    qualifiedMembers.sort((a, b) => a.name.localeCompare(b.name))
+
+    res.json({ weekLabel, bySong: Object.values(bySong), qualifiedMembers, totalSongs: totalActive })
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
@@ -49,3 +68,4 @@ async function triggerReset(req, res) {
 }
 
 module.exports = { getFinalList, triggerReset }
+

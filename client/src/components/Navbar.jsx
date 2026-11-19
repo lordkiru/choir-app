@@ -38,7 +38,7 @@ export default function Navbar() {
             )}
 
             <Link to="/roster" className="text-sm hover:underline flex items-center gap-1">
-              <Users size={15} /> Roster
+              <Users size={15} /> Approved Songs
             </Link>
 
             {user.role === 'admin' && (
