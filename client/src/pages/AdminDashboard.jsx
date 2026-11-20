@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getActiveSongs, createSong, deleteSong, resetWeek } from '../api'
-import { Shield, Trash2, Upload, RefreshCw, Music } from 'lucide-react'
+import { Shield, Trash2, Upload, RefreshCw, Music, Paperclip, X } from 'lucide-react'
 
 export default function AdminDashboard() {
   const [songs, setSongs] = useState([])
@@ -10,6 +10,7 @@ export default function AdminDashboard() {
   const [resetBusy, setResetBusy] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const fileInputRef = useRef(null)
 
   async function load() {
     const { data } = await getActiveSongs()
@@ -74,11 +75,43 @@ export default function AdminDashboard() {
           <input type="text" placeholder="Composer (optional)" value={form.composer}
             onChange={(e) => setForm({ ...form, composer: e.target.value })}
             className="border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Reference audio (optional)</label>
-            <input type="file" accept="audio/*" onChange={(e) => setFile(e.target.files[0])}
-              className="text-sm text-gray-600" />
+          {/* Hidden file input */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="audio/*"
+            className="hidden"
+            onChange={(e) => setFile(e.target.files[0] || null)}
+          />
+
+          {/* Custom file picker button */}
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium text-gray-700">Reference audio (optional)</label>
+            <div className="flex items-center gap-3 flex-wrap">
+              <button
+                type="button"
+                onClick={() => fileInputRef.current.click()}
+                className="flex items-center gap-2 border border-indigo-300 text-indigo-600 hover:bg-indigo-50 font-semibold px-4 py-2 rounded-xl text-sm transition"
+              >
+                <Paperclip size={15} />
+                {file ? 'Change file' : 'Choose audio file'}
+              </button>
+              {file && (
+                <div className="flex items-center gap-2 bg-indigo-50 border border-indigo-200 rounded-xl px-3 py-1.5 text-sm text-indigo-700 flex-1 min-w-0">
+                  <Music size={14} className="shrink-0" />
+                  <span className="truncate font-medium">{file.name}</span>
+                  <button
+                    type="button"
+                    onClick={() => { setFile(null); fileInputRef.current.value = '' }}
+                    className="ml-auto shrink-0 text-indigo-400 hover:text-red-500 transition"
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
+
           <button type="submit" disabled={busy}
             className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-semibold py-2.5 rounded-xl text-sm transition">
             <Upload size={16} /> {busy ? 'Adding…' : 'Add Song'}
