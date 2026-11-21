@@ -7,6 +7,7 @@ import MemberDashboard from './pages/MemberDashboard'
 import LeaderDashboard from './pages/LeaderDashboard'
 import AdminDashboard from './pages/AdminDashboard'
 import FinalRoster from './pages/FinalRoster'
+import HistoryPage from './pages/HistoryPage'
 
 // Redirect to login if not authenticated
 function RequireAuth({ children }) {
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="/dashboard" element={<RequireAuth><MemberDashboard /></RequireAuth>} />
             <Route path="/review" element={<RequireAuth><LeaderDashboard /></RequireAuth>} />
             <Route path="/roster" element={<RequireAuth><FinalRoster /></RequireAuth>} />
+            <Route path="/history" element={<RequireAuth><HistoryPage /></RequireAuth>} />
             <Route path="/admin" element={<RequireAuth><AdminDashboard /></RequireAuth>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
@@ -45,3 +47,4 @@ export default function App() {
     </AuthProvider>
   )
 }
+

@@ -33,6 +33,9 @@ export const getFinalList = (weekLabel) =>
   api.get('/approvals/final-list', { params: weekLabel ? { weekLabel } : {} })
 export const resetWeek = () => api.post('/approvals/admin/reset-week')
 
+// --- History ---
+export const getHistory = (params) => api.get('/history', { params })
+
 // --- Admin: User Management ---
 export const getUsers = () => api.get('/users')
 export const updateUserRole = (id, role) => api.patch(`/users/${id}/role`, { role })

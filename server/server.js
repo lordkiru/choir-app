@@ -9,6 +9,7 @@ const songRoutes = require('./routes/songs')
 const submissionRoutes = require('./routes/submissions')
 const approvalRoutes = require('./routes/approvals')
 const userRoutes = require('./routes/users')
+const historyRoutes = require('./routes/history')
 
 // Cron jobs (registers itself on require)
 require('./jobs/weeklyReset')
@@ -40,6 +41,7 @@ app.use('/api/songs', songRoutes)
 app.use('/api/submissions', submissionRoutes)
 app.use('/api/approvals', approvalRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/history', historyRoutes)
 
 // Admin reset is nested under approvals router but aliased here too for clarity
 // (already handled inside approvals.js as POST /api/approvals/admin/reset-week)

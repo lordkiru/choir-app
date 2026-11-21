@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { Music, LogOut, Users, Mic, ClipboardList, Shield } from 'lucide-react'
+import { Music, LogOut, Users, Mic, ClipboardList, Shield, History } from 'lucide-react'
 
 export default function Navbar() {
   const { user, logoutUser } = useAuth()
@@ -39,6 +39,10 @@ export default function Navbar() {
 
             <Link to="/roster" className="text-sm hover:underline flex items-center gap-1">
               <Users size={15} /> Approved Songs
+            </Link>
+
+            <Link to="/history" className="text-sm hover:underline flex items-center gap-1">
+              <History size={15} /> History
             </Link>
 
             {user.role === 'admin' && (
