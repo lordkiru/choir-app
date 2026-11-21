@@ -23,9 +23,13 @@ export default function AdminDashboard() {
   const fileInputRef = useRef(null)
 
   async function load() {
-    const [songsRes, usersRes] = await Promise.all([getActiveSongs(), getUsers()])
-    setSongs(songsRes.data.songs)
-    setUsers(usersRes.data.users)
+    try {
+      const [songsRes, usersRes] = await Promise.all([getActiveSongs(), getUsers()])
+      setSongs(songsRes.data.songs)
+      setUsers(usersRes.data.users)
+    } catch (err) {
+      setError(err.response?.data?.error || 'Failed to load data. Try refreshing.')
+    }
   }
 
   useEffect(() => { load() }, [])
