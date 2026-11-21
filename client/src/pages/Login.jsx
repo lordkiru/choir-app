@@ -28,12 +28,12 @@ export default function Login() {
       <div className="glass w-full max-w-sm p-8 flex flex-col gap-6">
         {/* Logo */}
         <div className="text-center flex flex-col items-center gap-3">
-          <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.9), rgba(99,102,241,0.9))', boxShadow: '0 8px 32px rgba(139,92,246,0.5), inset 0 1px 0 rgba(255,255,255,0.3)' }}>
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(160deg, #e8203a, #9a0f22)', boxShadow: '0 8px 32px rgba(220,20,50,0.6), inset 0 1px 0 rgba(255,180,180,0.3)' }}>
             <Music size={28} className="text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-glow" style={{ color: '#e2d9f3' }}>Welcome back</h1>
-            <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Sign in to ChoirApp</p>
+            <h1 className="text-2xl font-bold text-glow" style={{ color: '#ffe8ea' }}>Welcome back</h1>
+            <p className="text-sm mt-1" style={{ color: 'rgba(255,180,180,0.5)' }}>Sign in to ChoirApp</p>
           </div>
         </div>
 
@@ -68,7 +68,7 @@ export default function Login() {
 
         <p className="text-center text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
           No account?{' '}
-          <Link to="/register" className="font-semibold hover:underline" style={{ color: '#c4b5fd' }}>Register</Link>
+          <Link to="/register" className="font-semibold hover:underline" style={{ color: '#ffb0b8' }}>Register</Link>
         </p>
       </div>
     </div>

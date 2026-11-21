@@ -15,12 +15,12 @@ export default function ReviewCard({ submission, onReview }) {
   }
 
   return (
-    <div className="glass p-5 flex flex-col gap-4" style={{ borderLeft: `3px solid ${done ? 'rgba(34,197,94,0.6)' : 'rgba(139,92,246,0.6)'}` }}>
+    <div className="glass p-5 flex flex-col gap-4" style={{ borderLeft: `3px solid ${done ? 'rgba(34,197,94,0.6)' : 'rgba(220,30,60,0.7)'}` }}>
       <div className="flex items-start justify-between gap-2">
         <div>
-          <p className="font-bold" style={{ color: '#e2d9f3' }}>{submission.member?.name}</p>
-          <p className="text-sm font-medium mt-0.5" style={{ color: 'rgba(167,139,250,0.9)' }}>{submission.voicePartSnapshot}</p>
-          <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>
+          <p className="font-bold" style={{ color: '#ffe8ea' }}>{submission.member?.name}</p>
+          <p className="text-sm font-medium mt-0.5" style={{ color: 'rgba(255,140,160,0.9)' }}>{submission.voicePartSnapshot}</p>
+          <p className="text-xs mt-0.5" style={{ color: 'rgba(255,180,180,0.35)' }}>
             {new Date(submission.submittedAt).toLocaleString()}
           </p>
         </div>

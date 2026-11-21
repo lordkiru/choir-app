@@ -12,10 +12,10 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-40" style={{ background: 'rgba(15,12,41,0.75)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.08)', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}>
+    <nav className="sticky top-0 z-40" style={{ background: 'rgba(26,0,5,0.80)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,80,100,0.12)', boxShadow: '0 4px 24px rgba(180,0,30,0.5)' }}>
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2 font-bold text-lg text-glow" style={{ color: '#c4b5fd' }}>
-          <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.8), rgba(99,102,241,0.8))', boxShadow: '0 2px 10px rgba(139,92,246,0.5)' }}>
+        <Link to="/" className="flex items-center gap-2 font-bold text-lg text-glow" style={{ color: '#ffb0b8' }}>
+          <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(160deg, #e8203a, #9a0f22)', boxShadow: '0 2px 12px rgba(220,20,50,0.6)' }}>
             <Music size={16} />
           </div>
           <span>ChoirApp</span>
@@ -23,7 +23,7 @@ export default function Navbar() {
 
         {user && (
           <div className="flex items-center gap-1 flex-wrap">
-            <span className="hidden sm:block text-xs px-2 py-1 rounded-full mr-2" style={{ background: 'rgba(139,92,246,0.2)', border: '1px solid rgba(139,92,246,0.3)', color: '#c4b5fd' }}>
+            <span className="hidden sm:block text-xs px-2 py-1 rounded-full mr-2" style={{ background: 'rgba(220,20,50,0.2)', border: '1px solid rgba(255,80,100,0.3)', color: '#ffb0b8' }}>
               {user.voicePart} · {user.role === 'admin' ? '🛡' : user.role === 'part_leader' ? '🎤' : '🎵'} {user.role === 'admin' ? 'Admin' : user.role === 'part_leader' ? 'Leader' : 'Member'}
             </span>
 

@@ -12,12 +12,12 @@ export default function SongCard({ song, submission, onRecord }) {
   return (
     <div className="glass p-5 flex flex-col gap-3 hover:scale-[1.01] transition-transform">
       {/* Top accent bar */}
-      <div className="h-0.5 rounded-full" style={{ background: 'linear-gradient(90deg, rgba(139,92,246,0.8), rgba(99,102,241,0.3), transparent)' }} />
+      <div className="h-0.5 rounded-full" style={{ background: 'linear-gradient(90deg, rgba(220,30,60,0.9), rgba(180,10,40,0.4), transparent)' }} />
 
       <div>
-        <h2 className="text-base font-bold" style={{ color: '#e2d9f3' }}>{song.title}</h2>
-        {song.composer && <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.45)' }}>by {song.composer}</p>}
-        {song.weekLabel && <p className="text-xs mt-1" style={{ color: 'rgba(167,139,250,0.7)' }}>{song.weekLabel}</p>}
+        <h2 className="text-base font-bold" style={{ color: '#ffe8ea' }}>{song.title}</h2>
+        {song.composer && <p className="text-xs mt-0.5" style={{ color: 'rgba(255,180,180,0.5)' }}>by {song.composer}</p>}
+        {song.weekLabel && <p className="text-xs mt-1" style={{ color: 'rgba(255,120,140,0.8)' }}>{song.weekLabel}</p>}
       </div>
 
       {s && (
