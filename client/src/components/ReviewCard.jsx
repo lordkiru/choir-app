@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CheckCircle, MessageSquare, Play } from 'lucide-react'
+import { CheckCircle, MessageSquare } from 'lucide-react'
 
 export default function ReviewCard({ submission, onReview }) {
   const [feedback, setFeedback] = useState(submission.leaderFeedback || '')
@@ -11,66 +11,43 @@ export default function ReviewCard({ submission, onReview }) {
     try {
       await onReview(submission._id, { status, leaderFeedback: feedback })
       if (status === 'approved') setDone(true)
-    } finally {
-      setBusy(false)
-    }
+    } finally { setBusy(false) }
   }
 
   return (
-    <div className={`bg-white rounded-2xl shadow p-5 flex flex-col gap-4 border-l-4 ${done ? 'border-green-500' : 'border-indigo-400'}`}>
+    <div className="glass p-5 flex flex-col gap-4" style={{ borderLeft: `3px solid ${done ? 'rgba(34,197,94,0.6)' : 'rgba(139,92,246,0.6)'}` }}>
       <div className="flex items-start justify-between gap-2">
         <div>
-          <p className="font-bold text-gray-900">{submission.member?.name}</p>
-          <p className="text-sm text-indigo-600 font-medium">{submission.voicePartSnapshot}</p>
-          <p className="text-xs text-gray-400 mt-0.5">
-            Submitted {new Date(submission.submittedAt).toLocaleString()}
+          <p className="font-bold" style={{ color: '#e2d9f3' }}>{submission.member?.name}</p>
+          <p className="text-sm font-medium mt-0.5" style={{ color: 'rgba(167,139,250,0.9)' }}>{submission.voicePartSnapshot}</p>
+          <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>
+            {new Date(submission.submittedAt).toLocaleString()}
           </p>
         </div>
-        {done && (
-          <span className="flex items-center gap-1 text-green-700 bg-green-100 px-2 py-1 rounded-full text-xs font-semibold">
-            <CheckCircle size={13} /> Approved
-          </span>
-        )}
+        {done && <span className="chip-approved flex items-center gap-1"><CheckCircle size={11} /> Approved</span>}
       </div>
 
-      {/* Audio player */}
       {submission.audioUrl ? (
-        <audio controls src={submission.audioUrl} className="w-full h-9" />
+        <audio controls src={submission.audioUrl} className="w-full h-9 rounded-xl" style={{ accentColor: '#8b5cf6' }} />
       ) : (
-        <p className="text-xs text-gray-400 italic">No audio available.</p>
+        <p className="text-xs italic" style={{ color: 'rgba(255,255,255,0.3)' }}>No audio available.</p>
       )}
 
       {!done && (
         <>
-          {/* Feedback textarea */}
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-gray-600 flex items-center gap-1">
-              <MessageSquare size={13} /> Feedback (shown to member if revision requested)
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold flex items-center gap-1" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              <MessageSquare size={12} /> Feedback (optional)
             </label>
-            <textarea
-              rows={2}
-              className="border border-gray-300 rounded-xl p-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              placeholder="Optional note…"
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-            />
+            <textarea rows={2} value={feedback} onChange={(e) => setFeedback(e.target.value)}
+              className="input-glass resize-none text-sm" placeholder="Leave a note for the member…" />
           </div>
-
-          {/* Action buttons */}
           <div className="flex gap-3">
-            <button
-              disabled={busy}
-              onClick={() => handle('approved')}
-              className="flex-1 bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white font-semibold py-2 rounded-xl text-sm transition"
-            >
+            <button disabled={busy} onClick={() => handle('approved')} className="btn-glass-green flex-1 text-sm py-2">
               {busy ? '…' : '✅ Approve'}
             </button>
-            <button
-              disabled={busy}
-              onClick={() => handle('revision_requested')}
-              className="flex-1 bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-semibold py-2 rounded-xl text-sm transition"
-            >
-              {busy ? '…' : '🔄 Request Revision'}
+            <button disabled={busy} onClick={() => handle('revision_requested')} className="btn-glass-red flex-1 text-sm py-2">
+              {busy ? '…' : '🔄 Revision'}
             </button>
           </div>
         </>
@@ -78,3 +55,4 @@ export default function ReviewCard({ submission, onReview }) {
     </div>
   )
 }
+

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { login } from '../api'
 import { useAuth } from '../contexts/AuthContext'
-import { Music } from 'lucide-react'
+import { Music, Mail, Lock } from 'lucide-react'
 
 export default function Login() {
   const { loginUser } = useAuth()
@@ -24,43 +24,54 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50 p-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-8 flex flex-col gap-6">
-        <div className="text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-indigo-100 rounded-2xl mb-3">
-            <Music size={28} className="text-indigo-600" />
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="glass w-full max-w-sm p-8 flex flex-col gap-6">
+        {/* Logo */}
+        <div className="text-center flex flex-col items-center gap-3">
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.9), rgba(99,102,241,0.9))', boxShadow: '0 8px 32px rgba(139,92,246,0.5), inset 0 1px 0 rgba(255,255,255,0.3)' }}>
+            <Music size={28} className="text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
-          <p className="text-sm text-gray-500 mt-1">Sign in to ChoirApp</p>
+          <div>
+            <h1 className="text-2xl font-bold text-glow" style={{ color: '#e2d9f3' }}>Welcome back</h1>
+            <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Sign in to ChoirApp</p>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold flex items-center gap-1.5" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              <Mail size={12} /> Email
+            </label>
             <input type="email" required value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              placeholder="you@example.com" />
+              className="input-glass" placeholder="you@example.com" />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold flex items-center gap-1.5" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              <Lock size={12} /> Password
+            </label>
             <input type="password" required value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
-              className="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              placeholder="••••••••" />
+              className="input-glass" placeholder="••••••••" />
           </div>
-          {error && <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</p>}
-          <button type="submit" disabled={busy}
-            className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-semibold py-2.5 rounded-xl text-sm transition">
+
+          {error && (
+            <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.3)', color: '#fca5a5' }}>
+              {error}
+            </div>
+          )}
+
+          <button type="submit" disabled={busy} className="btn-glass w-full text-sm py-3 mt-1">
             {busy ? 'Signing in…' : 'Sign in'}
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-500">
+        <p className="text-center text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
           No account?{' '}
-          <Link to="/register" className="text-indigo-600 font-semibold hover:underline">Register</Link>
+          <Link to="/register" className="font-semibold hover:underline" style={{ color: '#c4b5fd' }}>Register</Link>
         </p>
       </div>
     </div>
   )
 }
+
