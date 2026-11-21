@@ -34,7 +34,7 @@ export const getFinalList = (weekLabel) =>
 export const resetWeek = () => api.post('/approvals/admin/reset-week')
 
 // --- Admin: User Management ---
-export const getUsers = () => api.get('/approvals/admin/users')
-export const updateUserRole = (id, role) => api.patch(`/approvals/admin/users/${id}/role`, { role })
-export const deleteUser = (id) => api.delete(`/approvals/admin/users/${id}`)
+export const getUsers = () => api.get('/users')
+export const updateUserRole = (id, role) => api.patch(`/users/${id}/role`, { role })
+export const deleteUser = (id) => api.delete(`/users/${id}`)
 
