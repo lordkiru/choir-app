@@ -15,7 +15,7 @@ export default function FinalRoster() {
       .finally(() => setLoading(false))
   }, [])
 
-  if (loading) return <div className="p-8 text-center animate-pulse" style={{ color:"rgba(160,30,50,0.6)" }}>Loading approved songs list…</div>
+  if (loading) return <div className="p-8 text-center animate-pulse" style={{ color:"var(--text-muted)" }}>Loading approved songs list…</div>
   if (error) return <div className="p-8 text-center text-red-500">{error}</div>
 
   return (

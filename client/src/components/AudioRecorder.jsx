@@ -145,7 +145,7 @@ export default function AudioRecorder({ song, onSubmit, onClose }) {
           )}
           {phase === 'preview' && (
             <>
-              <p className="text-sm font-medium" style={{ color: 'rgba(160,30,50,0.7)' }}>Preview your take before submitting.</p>
+              <p className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>Preview your take before submitting.</p>
               <audio ref={previewRef} controls src={blob ? URL.createObjectURL(blob) : ''} className="w-full h-9" />
               <div className="flex gap-3 w-full">
                 <button onClick={handleDiscard} className="btn-glass-outline flex-1 text-sm py-2">Discard</button>

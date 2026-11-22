@@ -35,7 +35,7 @@ export default function MemberDashboard() {
     await load() // refresh status
   }
 
-  if (loading) return <div className="p-8 text-center animate-pulse" style={{ color:"rgba(160,30,50,0.6)" }}>Loading songs…</div>
+  if (loading) return <div className="p-8 text-center animate-pulse" style={{ color:"var(--text-muted)" }}>Loading songs…</div>
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">

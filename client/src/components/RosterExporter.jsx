@@ -57,8 +57,8 @@ export default function RosterExporter({ weekLabel, bySong, qualifiedMembers, to
           <Trophy size={20} style={{ color: '#b45309' }} />
           <h2 className="text-lg font-bold" style={{ color: 'var(--text-heading)' }}>Qualified Members This Week</h2>
         </div>
-        <p className="text-xs mb-4" style={{ color: 'rgba(120,53,15,0.75)' }}>Submitted and approved in all {totalSongs} song{totalSongs === 1 ? '' : 's'}.</p>
-        {qualifiedMembers.length === 0 ? <p className="text-sm italic" style={{ color: 'rgba(120,53,15,0.65)' }}>No one fully qualified yet — keep recording!</p> : (
+        <p className="text-xs mb-4" style={{ color: 'var(--text-muted)' }}>Submitted and approved in all {totalSongs} song{totalSongs === 1 ? '' : 's'}.</p>
+        {qualifiedMembers.length === 0 ? <p className="text-sm italic" style={{ color: 'var(--text-muted)' }}>No one fully qualified yet — keep recording!</p> : (
           <ol className="flex flex-col gap-2">{qualifiedMembers.map((m, i) => (
             <li key={i} className="flex items-center justify-between bg-white rounded-xl px-4 py-2.5" style={{ boxShadow: '0 2px 8px rgba(220,170,0,0.1)', border: '1px solid rgba(220,170,0,0.15)' }}>
               <div className="flex items-center gap-3">

@@ -56,7 +56,7 @@ export default function LeaderDashboard() {
         </div>
       )}
 
-      {loading && <p className="animate-pulse" style={{ color:"rgba(160,30,50,0.6)" }}>Loading submissions…</p>}
+      {loading && <p className="animate-pulse" style={{ color:"var(--text-muted)" }}>Loading submissions…</p>}
 
       {!loading && submissions.length === 0 && (
         <p className="text-center py-10" style={{ color: 'var(--text-faint)' }}>No pending submissions for your voice part on this song.</p>

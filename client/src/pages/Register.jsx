@@ -40,7 +40,7 @@ export default function Register() {
               {VOICE_PARTS.map((p)=><option key={p} value={p}>{p}</option>)}
             </select>
           </div>
-          {error && <div className="rounded-xl px-4 py-3 text-sm" style={{ background:'rgba(220,30,60,0.08)',border:'1px solid rgba(220,30,60,0.25)',color:'#9a0f22' }}>{error}</div>}
+          {error && <div className="rounded-xl px-4 py-3 text-sm" style={{ background:'var(--bg-soft)',border:'1px solid rgba(220,30,60,0.25)',color:'var(--text-heading)' }}>{error}</div>}
           <button type="submit" disabled={busy} className="btn-glass w-full text-sm py-3 mt-1">{busy ? 'Creating account…' : 'Create account'}</button>
         </form>
         <p className="text-center text-sm" style={{ color: 'var(--text-muted)' }}>
