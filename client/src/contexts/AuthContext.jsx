@@ -6,13 +6,19 @@ const AuthContext = createContext(null)
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [theme, setTheme] = useState(() => localStorage.getItem('choir_theme') || 'light')
+
+  // Apply theme class to <html> element
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('choir_theme', theme)
+  }, [theme])
 
   useEffect(() => {
     const token = localStorage.getItem('choir_token')
     if (token) {
       try {
         const decoded = jwtDecode(token)
-        // Check expiry
         if (decoded.exp * 1000 > Date.now()) {
           setUser(decoded)
         } else {
@@ -36,8 +42,12 @@ export function AuthProvider({ children }) {
     setUser(null)
   }
 
+  function toggleTheme() {
+    setTheme((t) => (t === 'light' ? 'dark' : 'light'))
+  }
+
   return (
-    <AuthContext.Provider value={{ user, loading, loginUser, logoutUser }}>
+    <AuthContext.Provider value={{ user, loading, loginUser, logoutUser, theme, toggleTheme }}>
       {children}
     </AuthContext.Provider>
   )
@@ -46,3 +56,4 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   return useContext(AuthContext)
 }
+

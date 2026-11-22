@@ -1,4 +1,24 @@
 const fs = require('fs')
+const L = []
+const a = (s) => L.push(s)
+a('@import "tailwindcss";')
+a('@layer base {')
+a('  body { min-height:100vh; background:linear-gradient(160deg,#fff5f5 0%,#ffe4e6 45%,#fff8f8 100%); background-attachment:fixed; color:#1a0005; font-family:"Inter",system-ui,sans-serif; transition:background 0.3s,color 0.3s; }')
+a('  [data-theme="dark"] body { background:linear-gradient(160deg,#0d0005 0%,#1a0008 50%,#0d0309 100%); color:#f8e8ea; }')
+a('}')
+a('@layer components {')
+a('  .glass { background:linear-gradient(160deg,rgba(255,255,255,0.88) 0%,rgba(255,232,235,0.78) 100%); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(220,30,60,0.14); border-radius:1.25rem; box-shadow:0 8px 32px rgba(200,0,30,0.1),0 2px 8px rgba(0,0,0,0.05),inset 0 1px 0 rgba(255,255,255,0.95),inset 0 -1px 0 rgba(220,30,60,0.05); transition:background 0.3s; }')
+a('  [data-theme="dark"] .glass { background:linear-gradient(160deg,rgba(60,10,20,0.75) 0%,rgba(40,5,15,0.85) 100%); border:1px solid rgba(220,50,80,0.22); box-shadow:0 8px 32px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,120,140,0.1),inset 0 -1px 0 rgba(0,0,0,0.3); }')
+a('  .glass-light { background:rgba(255,255,255,0.93); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(220,30,60,0.1); border-radius:1.25rem; box-shadow:0 4px 20px rgba(200,0,30,0.07); }')
+a('  [data-theme="dark"] .glass-light { background:rgba(50,8,18,0.9); border:1px solid rgba(220,50,80,0.18); box-shadow:0 4px 20px rgba(0,0,0,0.4); }')
+a('  .btn-glass { background:linear-gradient(160deg,#e8203a 0%,#c0152c 55%,#9a0f22 100%); border:1px solid rgba(255,160,170,0.35); color:white; font-weight:700; padding:0.625rem 1.5rem; border-radius:0.875rem; cursor:pointer; transition:all 0.2s; display:inline-flex; align-items:center; justify-content:center; gap:0.4rem; box-shadow:0 4px 18px rgba(220,20,50,0.4),inset 0 1.5px 0 rgba(255,190,190,0.45),inset 0 -2px 0 rgba(0,0,0,0.12); text-shadow:0 1px 2px rgba(0,0,0,0.2); }')
+a('  .btn-glass:hover { background:linear-gradient(160deg,#f0304a,#d01830,#aa1225); box-shadow:0 6px 28px rgba(220,20,50,0.55); transform:translateY(-1px); } .btn-glass:active { transform:translateY(0); } .btn-glass:disabled { opacity:0.45; cursor:not-allowed; transform:none; }')
+a('  .btn-glass-red { background:linear-gradient(160deg,#ff3355,#cc1133,#990022); border:1px solid rgba(255,160,170,0.3); color:white; font-weight:700; padding:0.625rem 1.5rem; border-radius:0.875rem; cursor:pointer; transition:all 0.2s; box-shadow:0 4px 18px rgba(200,10,40,0.38); }')
+a('  .btn-glass-red:hover { background:linear-gradient(160deg,#ff4466,#dd2244,#aa1133); box-shadow:0 6px 24px rgba(200,10,40,0.55); transform:translateY(-1px); } .btn-glass-red:disabled { opacity:0.45; cursor:not-allowed; transform:none; }')
+a('  .btn-glass-green { background:linear-gradient(160deg,#22c55e,#16a34a,#0f7a38); border:1px solid rgba(134,239,172,0.3); color:white; font-weight:700; padding:0.625rem 1.5rem; border-radius:0.875rem; cursor:pointer; transition:all 0.2s; box-shadow:0 4px 18px rgba(22,163,74,0.38); }')
+a('  .btn-glass-green:hover { background:linear-gradient(160deg,#30d670,#20b458,#149040); box-shadow:0 6px 24px rgba(22,163,74,0.55); transform:translateY(-1px); } .btn-glass-green:disabled { opacity:0.45; cursor:not-allowed; transform:none; }')
+fs.writeFileSync('c:/Projects/choir-app/client/src/index.css', L.join('\n'), 'utf8')
+console.log('CSS part1:', L.length)
 
 const css = [
 '@import "tailwindcss";',
