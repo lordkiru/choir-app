@@ -23,18 +23,18 @@ export default function Register() {
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(160deg,#e8203a,#9a0f22)', boxShadow: '0 8px 28px rgba(220,20,50,0.4),inset 0 1px 0 rgba(255,180,180,0.4)' }}>
             <Music size={28} className="text-white" />
           </div>
-          <div><h1 className="text-2xl font-bold text-glow" style={{ color: '#9a0f22' }}>Join ChoirApp</h1>
-          <p className="text-sm mt-1" style={{ color: 'rgba(160,30,50,0.6)' }}>Create your account</p></div>
+          <div><h1 className="text-2xl font-bold text-glow" style={{ color: 'var(--text-heading)' }}>Join ChoirApp</h1>
+          <p className="text-sm mt-1" style={{ color: 'var(--text-muted)' }}>Create your account</p></div>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           {[{label:'Full name',key:'name',type:'text',ph:'Jane Doe'},{label:'Email',key:'email',type:'email',ph:'you@example.com'},{label:'Password',key:'password',type:'password',ph:'••••••••'}].map(({label,key,type,ph})=>(
             <div key={key} className="flex flex-col gap-1">
-              <label className="text-xs font-semibold" style={{ color: '#9a0f22' }}>{label}</label>
+              <label className="text-xs font-semibold" style={{ color: 'var(--text-heading)' }}>{label}</label>
               <input type={type} required value={form[key]} onChange={(e)=>setForm({...form,[key]:e.target.value})} className="input-glass" placeholder={ph} />
             </div>
           ))}
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold" style={{ color: '#9a0f22' }}>Voice part</label>
+            <label className="text-xs font-semibold" style={{ color: 'var(--text-heading)' }}>Voice part</label>
             <select value={form.voicePart} onChange={(e)=>setForm({...form,voicePart:e.target.value})} className="input-glass" style={{ cursor:'pointer' }}>
               <option value="">Select your part…</option>
               {VOICE_PARTS.map((p)=><option key={p} value={p}>{p}</option>)}
@@ -43,8 +43,8 @@ export default function Register() {
           {error && <div className="rounded-xl px-4 py-3 text-sm" style={{ background:'rgba(220,30,60,0.08)',border:'1px solid rgba(220,30,60,0.25)',color:'#9a0f22' }}>{error}</div>}
           <button type="submit" disabled={busy} className="btn-glass w-full text-sm py-3 mt-1">{busy ? 'Creating account…' : 'Create account'}</button>
         </form>
-        <p className="text-center text-sm" style={{ color: 'rgba(160,30,50,0.6)' }}>
-          Already registered? <Link to="/login" className="font-semibold hover:underline" style={{ color: '#c0152c' }}>Sign in</Link>
+        <p className="text-center text-sm" style={{ color: 'var(--text-muted)' }}>
+          Already registered? <Link to="/login" className="font-semibold hover:underline" style={{ color: 'var(--text-accent)' }}>Sign in</Link>
         </p>
       </div>
     </div>

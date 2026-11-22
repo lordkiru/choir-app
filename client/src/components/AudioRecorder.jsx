@@ -96,27 +96,27 @@ export default function AudioRecorder({ song, onSubmit, onClose }) {
       <div className="glass w-full max-w-md p-6 flex flex-col gap-4">
         <div className="flex items-start justify-between">
           <div>
-            <h2 className="font-bold text-lg" style={{ color: '#9a0f22' }}>{song.title}</h2>
-            {song.composer && <p className="text-sm" style={{ color: 'rgba(160,30,50,0.6)' }}>{song.composer}</p>}
+            <h2 className="font-bold text-lg" style={{ color: 'var(--text-heading)' }}>{song.title}</h2>
+            {song.composer && <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{song.composer}</p>}
           </div>
-          <button onClick={onClose} style={{ color: 'rgba(160,30,50,0.5)' }}><X size={20} /></button>
+          <button onClick={onClose} style={{ color: 'var(--text-muted)' }}><X size={20} /></button>
         </div>
-        <div className="flex items-start gap-2 rounded-xl p-3 text-sm" style={{ background: 'rgba(220,30,60,0.06)', border: '1px solid rgba(220,30,60,0.15)', color: '#9a0f22' }}>
+        <div className="flex items-start gap-2 rounded-xl p-3 text-sm" style={{ background: 'var(--bg-soft)', border: '1px solid var(--border-soft)', color: 'var(--text-heading)' }}>
           <Headphones size={17} className="shrink-0 mt-0.5" />
           <span>Use headphones so the backing track does not bleed into your mic.</span>
         </div>
         {song.referenceAudioUrl && (
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold" style={{ color: '#9a0f22' }}>
-              Backing track: <span style={{ color: '#c0152c' }}>{Math.round(refVolume * 100)}%</span>
+            <label className="text-xs font-semibold" style={{ color: 'var(--text-heading)' }}>
+              Backing track: <span style={{ color: 'var(--text-accent)' }}>{Math.round(refVolume * 100)}%</span>
             </label>
             <input type="range" min={0} max={1} step={0.05} value={refVolume} onChange={(e) => setRefVolume(Number(e.target.value))} className="w-full accent-red-600" />
             {phase === 'idle' && <audio controls src={song.referenceAudioUrl} className="w-full h-9 mt-1" />}
           </div>
         )}
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-semibold" style={{ color: '#9a0f22' }}>
-            Mic volume: <span style={{ color: '#c0152c' }}>{Math.round(micVolume * 100)}%</span>
+          <label className="text-xs font-semibold" style={{ color: 'var(--text-heading)' }}>
+            Mic volume: <span style={{ color: 'var(--text-accent)' }}>{Math.round(micVolume * 100)}%</span>
           </label>
           <input type="range" min={0} max={2} step={0.05} value={micVolume} onChange={(e) => setMicVolume(Number(e.target.value))} className="w-full accent-red-700" />
         </div>
@@ -126,12 +126,12 @@ export default function AudioRecorder({ song, onSubmit, onClose }) {
           )}
           {phase === 'recording' && (
             <>
-              <div className="flex items-center gap-2 font-mono text-2xl font-bold" style={{ color: '#c0152c' }}>
+              <div className="flex items-center gap-2 font-mono text-2xl font-bold" style={{ color: 'var(--text-accent)' }}>
                 <span className="w-3 h-3 rounded-full inline-block animate-pulse" style={{ background: '#c0152c' }} />{fmt(elapsed)}
               </div>
-              <div className="w-full rounded-xl p-3 flex flex-col gap-2" style={{ background: 'rgba(220,30,60,0.05)', border: '1px solid rgba(220,30,60,0.12)' }}>
+              <div className="w-full rounded-xl p-3 flex flex-col gap-2" style={{ background: 'rgba(220,30,60,0.05)', border: '1px solid var(--border-soft)' }}>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5"><Mic size={13} style={{ color: 'rgba(160,30,50,0.5)' }}/><span className="text-xs font-semibold" style={{ color: 'rgba(160,30,50,0.6)' }}>Mic level</span></div>
+                  <div className="flex items-center gap-1.5"><Mic size={13} style={{ color: 'var(--text-muted)' }}/><span className="text-xs font-semibold" style={{ color: 'var(--text-muted)' }}>Mic level</span></div>
                   <span className="text-xs font-bold" style={{ color: micLevel >= 90 ? '#dc2626' : micLevel >= 60 ? '#d97706' : '#16a34a' }}>{levelLabel}</span>
                 </div>
                 <div className="flex items-end gap-0.5 h-8">
@@ -153,9 +153,9 @@ export default function AudioRecorder({ song, onSubmit, onClose }) {
               </div>
             </>
           )}
-          {phase === 'uploading' && <p className="text-sm animate-pulse" style={{ color: '#c0152c' }}>Uploading your recording...</p>}
+          {phase === 'uploading' && <p className="text-sm animate-pulse" style={{ color: 'var(--text-accent)' }}>Uploading your recording...</p>}
         </div>
-        {error && <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(220,30,60,0.08)', border: '1px solid rgba(220,30,60,0.2)', color: '#9a0f22' }}>{error}</div>}
+        {error && <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'var(--bg-soft)', border: '1px solid rgba(220,30,60,0.2)', color: 'var(--text-heading)' }}>{error}</div>}
       </div>
     </div>
   )

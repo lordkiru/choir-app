@@ -21,15 +21,15 @@ export default function FinalRoster() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="flex items-center gap-3 mb-6">
-        <Users size={28} style={{ color: "#c0152c" }} />
+        <Users size={28} style={{ color: "var(--text-accent)" }} />
         <div>
-          <h1 className="text-2xl font-bold text-glow" style={{ color: "#9a0f22" }}>Approved Songs List</h1>
+          <h1 className="text-2xl font-bold text-glow" style={{ color: "var(--text-heading)" }}>Approved Songs List</h1>
           <p className="text-sm text-gray-500">{data.weekLabel}</p>
         </div>
       </div>
 
       {data.bySong.length === 0 && data.qualifiedMembers.length === 0 ? (
-        <p className="text-center py-10" style={{ color: 'rgba(160,30,50,0.4)' }}>No approvals recorded yet this week.</p>
+        <p className="text-center py-10" style={{ color: 'var(--text-faint)' }}>No approvals recorded yet this week.</p>
       ) : (
         <RosterExporter
           weekLabel={data.weekLabel}

@@ -1,5 +1,27 @@
 @import "tailwindcss";
 
+/* ── Colour tokens — updated by [data-theme="dark"] ── */
+:root {
+  --text-primary:   #1a0005;
+  --text-heading:   #9a0f22;
+  --text-accent:    #c0152c;
+  --text-muted:     rgba(160,30,50,0.6);
+  --text-faint:     rgba(160,30,50,0.4);
+  --text-label:     #9a0f22;
+  --border-soft:    rgba(220,30,60,0.1);
+  --bg-soft:        rgba(220,30,60,0.06);
+}
+[data-theme="dark"] {
+  --text-primary:   #f8e8ea;
+  --text-heading:   #ffb0bc;
+  --text-accent:    #ff8099;
+  --text-muted:     rgba(255,180,190,0.7);
+  --text-faint:     rgba(255,180,190,0.45);
+  --text-label:     #ffb0bc;
+  --border-soft:    rgba(220,50,80,0.18);
+  --bg-soft:        rgba(220,30,60,0.12);
+}
+
 @layer base {
   body { min-height:100vh; background:linear-gradient(160deg,#fff5f5 0%,#ffe4e6 45%,#fff8f8 100%); background-attachment:fixed; color:#1a0005; font-family:"Inter",system-ui,sans-serif; transition:background 0.3s,color 0.3s; }
   [data-theme="dark"] body { background:linear-gradient(160deg,#0d0005 0%,#1a0008 50%,#0d0309 100%); color:#f8e8ea; }

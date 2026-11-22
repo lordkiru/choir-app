@@ -27,24 +27,24 @@ export default function Login() {
             <Music size={28} className="text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-glow" style={{ color: '#9a0f22' }}>Welcome back</h1>
-            <p className="text-sm mt-1" style={{ color: 'rgba(160,30,50,0.6)' }}>Sign in to ChoirApp</p>
+            <h1 className="text-2xl font-bold text-glow" style={{ color: 'var(--text-heading)' }}>Welcome back</h1>
+            <p className="text-sm mt-1" style={{ color: 'var(--text-muted)' }}>Sign in to ChoirApp</p>
           </div>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold flex items-center gap-1.5" style={{ color: '#9a0f22' }}><Mail size={12} /> Email</label>
+            <label className="text-xs font-semibold flex items-center gap-1.5" style={{ color: 'var(--text-heading)' }}><Mail size={12} /> Email</label>
             <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="input-glass" placeholder="you@example.com" />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold flex items-center gap-1.5" style={{ color: '#9a0f22' }}><Lock size={12} /> Password</label>
+            <label className="text-xs font-semibold flex items-center gap-1.5" style={{ color: 'var(--text-heading)' }}><Lock size={12} /> Password</label>
             <input type="password" required value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} className="input-glass" placeholder="••••••••" />
           </div>
-          {error && <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(220,30,60,0.08)', border: '1px solid rgba(220,30,60,0.25)', color: '#9a0f22' }}>{error}</div>}
+          {error && <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'var(--bg-soft)', border: '1px solid rgba(220,30,60,0.25)', color: 'var(--text-heading)' }}>{error}</div>}
           <button type="submit" disabled={busy} className="btn-glass w-full text-sm py-3 mt-1">{busy ? 'Signing in…' : 'Sign in'}</button>
         </form>
-        <p className="text-center text-sm" style={{ color: 'rgba(160,30,50,0.6)' }}>
-          No account? <Link to="/register" className="font-semibold hover:underline" style={{ color: '#c0152c' }}>Register</Link>
+        <p className="text-center text-sm" style={{ color: 'var(--text-muted)' }}>
+          No account? <Link to="/register" className="font-semibold hover:underline" style={{ color: 'var(--text-accent)' }}>Register</Link>
         </p>
       </div>
     </div>

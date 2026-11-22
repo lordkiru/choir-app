@@ -40,8 +40,8 @@ export default function MemberDashboard() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="flex items-center gap-3 mb-6">
-        <Music2 size={28} style={{ color: "#c0152c" }} />
-        <h1 className="text-2xl font-bold text-glow" style={{ color: "#9a0f22" }}>This Week's Songs</h1>
+        <Music2 size={28} style={{ color: "var(--text-accent)" }} />
+        <h1 className="text-2xl font-bold text-glow" style={{ color: "var(--text-heading)" }}>This Week's Songs</h1>
       </div>
 
       {error && <p className="text-red-600 bg-red-50 rounded-xl p-4 mb-4">{error}</p>}

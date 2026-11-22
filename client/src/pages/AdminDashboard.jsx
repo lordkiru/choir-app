@@ -17,9 +17,9 @@ export default function AdminDashboard() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const fileInputRef = useRef(null)
-  const RED = { color: '#9a0f22' }
-  const MUTED = { color: 'rgba(160,30,50,0.55)' }
-  const DARK = { color: '#1a0005' }
+  const RED = { color: 'var(--text-heading)' }
+  const MUTED = { color: 'var(--text-muted)' }
+  const DARK = { color: 'var(--text-primary)' }
   async function load() {
     try { const [sR,uR]=await Promise.all([getActiveSongs(),getUsers()]); setSongs(sR.data.songs); setUsers(uR.data.users) }
     catch(err){setError(err.response?.data?.error||'Failed to load.')} }
