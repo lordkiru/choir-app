@@ -38,8 +38,8 @@ export default function LeaderDashboard() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="flex items-center gap-3 mb-6">
-        <ClipboardList size={28} className="text-indigo-600" />
-        <h1 className="text-2xl font-bold text-gray-900">Review Submissions</h1>
+        <ClipboardList size={28} style={{ color: "#c0152c" }} />
+        <h1 className="text-2xl font-bold text-glow" style={{ color: "#9a0f22" }}>Review Submissions</h1>
       </div>
 
       {error && <p className="text-red-600 bg-red-50 rounded-xl p-4 mb-4">{error}</p>}
@@ -49,17 +49,17 @@ export default function LeaderDashboard() {
         <div className="flex flex-wrap gap-2 mb-6">
           {songs.map((s) => (
             <button key={s._id} onClick={() => setActiveSongId(s._id)}
-              className={`px-4 py-1.5 rounded-full text-sm font-semibold transition border ${activeSongId === s._id ? 'bg-indigo-600 text-white border-indigo-600' : 'border-gray-300 text-gray-700 hover:bg-gray-50'}`}>
+              className={activeSongId === s._id ? 'btn-glass text-sm py-1.5 px-4' : 'btn-glass-outline text-sm py-1.5 px-4'}>
               {s.title}
             </button>
           ))}
         </div>
       )}
 
-      {loading && <p className="text-gray-500 animate-pulse">Loading submissions…</p>}
+      {loading && <p className="animate-pulse" style={{ color:"rgba(160,30,50,0.6)" }}>Loading submissions…</p>}
 
       {!loading && submissions.length === 0 && (
-        <p className="text-gray-400 text-center py-10">No pending submissions for your voice part on this song.</p>
+        <p className="text-center py-10" style={{ color: 'rgba(160,30,50,0.4)' }}>No pending submissions for your voice part on this song.</p>
       )}
 
       <div className="grid gap-4">

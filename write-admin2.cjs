@@ -1,0 +1,27 @@
+const fs = require('fs')
+const p = 'c:/Projects/choir-app/client/src/pages/AdminDashboard.jsx'
+const L = []
+const a = (s) => L.push(s)
+
+a("  async function handleCreate(e) {")
+a("    e.preventDefault(); if(!form.title)return setError('Title required.')")
+a("    setBusy(true);setError('');setSuccess('')")
+a("    try { const fd=new FormData(); fd.append('title',form.title); fd.append('composer',form.composer); if(file)fd.append('referenceAudio',file); await createSong(fd); setForm({title:'',composer:''}); setFile(null); setSuccess('Song added.'); await load() }")
+a("    catch(err){setError(err.response?.data?.error||'Failed.')} finally{setBusy(false)} }")
+a("  async function handleDelete(id){if(!window.confirm('Delete this song?'))return; try{await deleteSong(id);await load()}catch(err){setError(err.response?.data?.error||'Failed.')}}")
+a("  async function handleRoleChange(uid,role){")
+a("    setRoleBusy(uid);setError('');setSuccess('')")
+a("    try{await updateUserRole(uid,role);setUsers((p)=>p.map((u)=>u._id===uid?{...u,role}:u));setSuccess('Role updated.')}")
+a("    catch(err){setError(err.response?.data?.error||'Failed.')}finally{setRoleBusy('')}}")
+a("  async function handleDeleteUser(uid,name){")
+a("    if(!window.confirm('Delete \"'+name+'\"?'))return")
+a("    try{await deleteUser(uid);setUsers((p)=>p.filter((u)=>u._id!==uid));setSuccess(name+' removed.')}")
+a("    catch(err){setError(err.response?.data?.error||'Failed.')}}")
+a("  async function handleReset(){")
+a("    if(!window.confirm('Reset the week? Cannot be undone.'))return")
+a("    setResetBusy(true);setError('');setSuccess('')")
+a("    try{const{data}=await resetWeek();setSuccess('Done. '+data.summary.unapprovedDeleted+' deleted, '+data.summary.songsArchived+' archived.');await load()}")
+a("    catch(err){setError(err.response?.data?.error||'Reset failed.')}finally{setResetBusy(false)}}")
+
+fs.appendFileSync(p, '\n' + L.join('\n'), 'utf8')
+console.log('part2:', L.length)
